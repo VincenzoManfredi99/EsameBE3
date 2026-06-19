@@ -7,8 +7,6 @@ import vincenzomanfredi.dao.ArticoloDAO;
 import vincenzomanfredi.entities.Articolo;
 import vincenzomanfredi.exceptions.NotFoundException;
 
-import java.util.UUID;
-
 public class Application {
 
     private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("biblioteca");
@@ -33,11 +31,14 @@ public class Application {
             em.getTransaction().begin();
             em.persist(prestito);
             em.getTransaction().commit();
-            System.out.println("Prestito registrato con successo!");*/
+            System.out.println("Prestito registrato con successo!");
 
             Articolo articoloCercato = articoloDAO.findById(UUID.fromString("1bd25eb8-70c9-4f75-b5df-cf97674d7991"));
-            System.out.println(articoloCercato);
-            
+            System.out.println(articoloCercato);*/
+
+            Articolo articoloCercatoIsbn = articoloDAO.findByIsbn("000-333");
+            System.out.println(articoloCercatoIsbn);
+
 
         } catch (NotFoundException ex) {
             System.out.println(ex.getMessage());
