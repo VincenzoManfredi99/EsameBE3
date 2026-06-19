@@ -4,8 +4,10 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import vincenzomanfredi.dao.ArticoloDAO;
-import vincenzomanfredi.entities.Articolo;
+import vincenzomanfredi.entities.Libro;
 import vincenzomanfredi.exceptions.NotFoundException;
+
+import java.util.List;
 
 public class Application {
 
@@ -34,12 +36,26 @@ public class Application {
             System.out.println("Prestito registrato con successo!");
 
             Articolo articoloCercato = articoloDAO.findById(UUID.fromString("1bd25eb8-70c9-4f75-b5df-cf97674d7991"));
-            System.out.println(articoloCercato);*/
+            System.out.println(articoloCercato);
 
             Articolo articoloCercatoIsbn = articoloDAO.findByIsbn("000-333");
             System.out.println(articoloCercatoIsbn);
 
+            List<Articolo> articoliPerAnno = articoloDAO.findByAnnoDiPubblicazione(2026);
 
+            if (articoliPerAnno.isEmpty()) {
+                System.out.println("Nessun articolo trovato");
+            } else {
+                System.out.println("Gli articoli per l'anno slezionato sono: " + articoliPerAnno);
+            }*/
+
+            List<Libro> libriPerAutore = articoloDAO.findByAutore("Zamjatin");
+            if (libriPerAutore.isEmpty()) {
+                System.out.println("Nessun libro trovato");
+            } else {
+                System.out.println("I libri di questo autore sono: " + libriPerAutore);
+            }
+            
         } catch (NotFoundException ex) {
             System.out.println(ex.getMessage());
         }

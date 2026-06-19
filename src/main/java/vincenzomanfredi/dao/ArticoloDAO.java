@@ -5,9 +5,11 @@ import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
 import vincenzomanfredi.entities.Articolo;
+import vincenzomanfredi.entities.Libro;
 import vincenzomanfredi.exceptions.NotFoundException;
 import vincenzomanfredi.exceptions.NotFoundIsbnException;
 
+import java.util.List;
 import java.util.UUID;
 
 public class ArticoloDAO {
@@ -43,4 +45,17 @@ public class ArticoloDAO {
             throw new NotFoundIsbnException(isbn);
         }
     }
+
+    public List<Articolo> findByAnnoDiPubblicazione(int anno) {
+        TypedQuery<Articolo> query = em.createQuery("SELECT a FROM Articolo a WHERE a.annoPubblicazione = :anno", Articolo.class);
+        query.setParameter("anno", anno);
+        return query.getResultList();
+    }
+
+    public List<Libro> findByAutore(String autore) {
+        TypedQuery<Libro> query = em.createQuery("SELECT l FROM Libro l WHERE l.autore = :autore", Libro.class);
+        query.setParameter("autore", autore);
+        return query.getResultList();
+    }
+
 }
