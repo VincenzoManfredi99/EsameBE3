@@ -1,9 +1,6 @@
 package vincenzomanfredi.dao;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityTransaction;
-import jakarta.persistence.NoResultException;
-import jakarta.persistence.TypedQuery;
+import jakarta.persistence.*;
 import vincenzomanfredi.entities.Articolo;
 import vincenzomanfredi.entities.Libro;
 import vincenzomanfredi.exceptions.NotFoundException;
@@ -44,6 +41,15 @@ public class ArticoloDAO {
         } catch (NoResultException e) {
             throw new NotFoundIsbnException(isbn);
         }
+    }
+
+    public void findByIsbnAndRemove(String isbn) {
+        EntityTransaction transaction = em.getTransaction();
+        transaction.begin();
+        Query query = em.createQuery("DELETE FROM Articolo a WHERE a.codiceIsbn = :isbn ");
+        query.setParameter("isbn", isbn);
+        query.executeUpdate();
+        transaction.commit();
     }
 
     public List<Articolo> findByAnnoDiPubblicazione(int anno) {

@@ -4,11 +4,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import vincenzomanfredi.dao.ArticoloDAO;
-import vincenzomanfredi.entities.Articolo;
-import vincenzomanfredi.entities.Libro;
 import vincenzomanfredi.exceptions.NotFoundException;
-
-import java.util.List;
 
 public class Application {
 
@@ -48,7 +44,7 @@ public class Application {
                 System.out.println("Nessun articolo trovato");
             } else {
                 System.out.println("Gli articoli per l'anno slezionato sono: " + articoliPerAnno);
-            }*/
+            }
 
             List<Libro> libriPerAutore = articoloDAO.findByAutore("Zamjatin");
             if (libriPerAutore.isEmpty()) {
@@ -63,6 +59,10 @@ public class Application {
             } else {
                 System.out.println("Gli articoli filtrati sono: " + articoloPerTitolo);
             }
+
+             */
+
+            articoloDAO.findByIsbnAndRemove("000-333");
 
 
         } catch (NotFoundException ex) {
