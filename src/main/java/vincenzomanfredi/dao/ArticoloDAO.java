@@ -4,6 +4,8 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import vincenzomanfredi.entities.Articolo;
 
+import java.util.UUID;
+
 public class ArticoloDAO {
     private final EntityManager em;
 
@@ -19,4 +21,9 @@ public class ArticoloDAO {
         transaction.commit();
         System.out.println("Articolo" + articolo.getTitolo() + " salvata con successo");
     }
+
+    public Articolo findById(UUID id) {
+        return em.find(Articolo.class, id);
+    }
+
 }

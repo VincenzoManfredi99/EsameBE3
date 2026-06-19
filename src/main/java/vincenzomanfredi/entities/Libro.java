@@ -36,4 +36,11 @@ public class Libro extends Articolo {
         this.genere = genere;
     }
 
+    @Override
+    public String toString() {
+        return "Libro -> " + super.toString() +
+                " Autore=" + autore +
+                ", Genere=" + genere;
+    }
+
 }

@@ -25,4 +25,11 @@ public class Rivista extends Articolo {
     public void setPeriodicita(Periodicita periodicita) {
         this.periodicita = periodicita;
     }
+
+    @Override
+    public String toString() {
+        return "Rivista -> " + super.toString() +
+                " Periodicità=" + periodicita;
+    }
+
 }

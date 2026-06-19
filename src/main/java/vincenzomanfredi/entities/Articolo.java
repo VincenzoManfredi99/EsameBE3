@@ -66,4 +66,13 @@ public abstract class Articolo {
     public void setNpagine(int nPagine) {
         this.nPagine = nPagine;
     }
+
+    @Override
+    public String toString() {
+        return "Articolo ID=" + id +
+                ", ISBN=" + codiceIsbn +
+                ", Titolo=" + titolo +
+                ", Anno=" + annoPubblicazione +
+                ", Pagine=" + nPagine;
+    }
 }
