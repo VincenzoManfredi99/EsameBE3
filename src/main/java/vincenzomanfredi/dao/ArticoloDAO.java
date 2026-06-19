@@ -58,4 +58,10 @@ public class ArticoloDAO {
         return query.getResultList();
     }
 
+    public List<Articolo> findByTitolo(String titolo) {
+        TypedQuery<Articolo> query = em.createQuery("SELECT a FROM Articolo a WHERE LOWER(a.titolo) LIKE LOWER(:titolo)", Articolo.class);
+        query.setParameter("titolo", "%" + titolo.toLowerCase() + "%");
+        return query.getResultList();
+    }
+
 }

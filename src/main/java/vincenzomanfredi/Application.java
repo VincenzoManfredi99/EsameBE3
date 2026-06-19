@@ -4,6 +4,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import vincenzomanfredi.dao.ArticoloDAO;
+import vincenzomanfredi.entities.Articolo;
 import vincenzomanfredi.entities.Libro;
 import vincenzomanfredi.exceptions.NotFoundException;
 
@@ -55,7 +56,15 @@ public class Application {
             } else {
                 System.out.println("I libri di questo autore sono: " + libriPerAutore);
             }
-            
+
+            List<Articolo> articoloPerTitolo = articoloDAO.findByTitolo("ik");
+            if (articoloPerTitolo.isEmpty()) {
+                System.out.println("Non esiste nessun titolo con queste lettere");
+            } else {
+                System.out.println("Gli articoli filtrati sono: " + articoloPerTitolo);
+            }
+
+
         } catch (NotFoundException ex) {
             System.out.println(ex.getMessage());
         }
